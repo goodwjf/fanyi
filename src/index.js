@@ -1,65 +1,87 @@
 const fy = require('./translate.js')
-const { getInput, output } = require('./io.js')
-const { code } = require('./config.js')
+const { getInputPath, output, diff, creatHistory } = require('./io.js')
+const { codeList } = require('./config.js')
 
-const lang = {}
-const keys = Object.keys(getInput())
-//console.log(keys) 
-// keys 作为Get请求参数 总长度 14433 （2000+字段）
-// chrome get请求参数最大 8182 所以考虑分组翻译
-// 每次请求翻译500个字段
-const one_group = 500;
+let lang = {}
+let counter = 0
 
-function getGroupSize(keys) {
-  let count = keys.length
-  let n = count / one_group
-  n = n > parseInt(n) ? parseInt(n) + 1 : n
-  return n;
+function getKeysStr() {
+  let zh = require(getInputPath())
+  let keys = Array.isArray(zh) ? zh : Object.keys(zh)
+  keys = diff(keys)
+  
+  console.warn(new Date(), `Newly added [ ${keys.length} ] translation`);
+  return (keys.length > 0) ? keys.join('\n') : ''
 }
 
-function t(_keys) {
-  return new Promise(function(resolve, reject) {
+async function t(_code) {
+  return new Promise((resolve, reject) => {
+    let keysStr = getKeysStr()
+    if (!keysStr){
+      reject()
+    }
     try {
-      let _lang = {}
-      fy.translate(_keys, function(res) {
-        // console.log(res)
-        res.forEach(({src, dst}) => {
-          if (code === 'en') {
-            dst = dst.charAt(0).toUpperCase() + dst.slice(1)
-          }
-          lang[src] = dst
-          _lang[src] = dst
-          
-        });
-        resolve(_lang)
-      })
+      setTimeout(()=>{
+        fy.setLang({
+          from: 'zh',
+          to: _code
+        })
+        fy.translate(keysStr, function(res) {
+          // console.log(res)
+          res.forEach(({src, dst}) => {
+            if (_code === 'en') {
+              dst = dst.charAt(0).toUpperCase() + dst.slice(1)
+            }
+            lang[src] = dst
+          })
+          resolve(_code)
+        })
+      },100)
     } catch (error) {
       reject(error)
     }
+  }).then(() => {
+    let l = Object.keys(lang)
+    output(lang, _code, ()=>{
+      lang = {}
+    })
+    return _code
   })
 }
 
-function run() {
-  fy.setLang({
-    from: 'zh',
-    to: code
-  })
+async function run() {
+  // # 并发请求 会遭到百度拒绝
+  // # 产生报错：54005 	 长query请求频繁  请降低长query的发送频率，3s后再试 
+  // let pAll = []
+  // codeList.forEach(((code)=>{
+  //   pAll.push(t(code))
+  // }))
+  // Promise.all(pAll).then(function() {
+  //     process.exit(0);
+  // })
 
-  let size = getGroupSize(keys)
-  let pArr = []
-  for (let i = 0; i < size; i++) {
-    let from = i * one_group
-    let to = from + one_group
-    let p = t(keys.slice(from, to).join('\n'))
-    pArr.push(p)
+  // # 错误异步遍历的写法
+  // codeList.forEach(((code)=>{
+  //    let c = await t(code)
+  //    console.log(c)
+  // }))
+
+  // # 绕过百度提示长query的发送频率，3s后再试 ，用队列的方式解决 排队一个一个来请求
+  const len = codeList.length
+  try {
+    for (let i = 0; i < len; i++) {
+      let c = await t(codeList[i])
+      console.warn(new Date(),`${c}.js translation done`)
+      if(++counter === len) {
+        console.warn(new Date(),'Completion of program')
+        creatHistory()
+        process.exit(0)
+      }
+    }
+  } catch (error) {
+    console.warn(new Date(),'No translation added')
+    process.exit(0)
   }
 
-  Promise.all(pArr).then(function(arr) {
-    output(lang, code, () => {
-      // console.log('size', size)
-      process.exit(0);
-    })
-  })
 }
-
 run()

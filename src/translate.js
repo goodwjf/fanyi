@@ -23,7 +23,8 @@ function translate(q, fn) {
   const sign = md5(appid + q + salt + appSecret);
   const from = option.from;  
   const to = option.to;
-
+  
+  //query 长度：为保证翻译质量，请将单次请求长度控制在 6000 bytes以内（汉字约为输入参数 2000 个）
   const query = queryString.stringify({
     q,
     appid,
@@ -36,8 +37,11 @@ function translate(q, fn) {
   const options = {
     hostname: 'fanyi-api.baidu.com',
     port: 443,
-    path: `/api/trans/vip/translate?${query}`,
-    method: 'GET',
+    path: `/api/trans/vip/translate`,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
   };
 
   const request = https.request(options, (response) => {
@@ -65,6 +69,7 @@ function translate(q, fn) {
   request.on('error', (e) => {
     console.error(e);
   });
+  request.write(query);
   request.end();
 }
 

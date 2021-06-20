@@ -12,9 +12,12 @@
 npm install
 
 # 基于中文翻译 
-# npm run t [en | vie | th | cht] 比如：
+# npm run t [en | vie | th | cht | all] （备注： all 会翻译列出的所有的语言）比如：
 
 npm run t en
+
+# 监控词典变化自动增量翻译
+npm run watch
 ```
 
 ### 高级用法
@@ -27,3 +30,6 @@ npm run t en
  # 指定翻译后输出的文件目录
   "outputDir": "../[项目目录]/src/i18n/test",
 ```
+
+
+参考： http://api.fanyi.baidu.com/doc/21

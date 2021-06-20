@@ -2,13 +2,16 @@
   "name": "fanyi",
   "version": "1.0.0",
   "description": "",
+  "inputFile": "../aagames_operation_backend_web/src/i18n/zh.js",
+  "outputDir": "../aagames_operation_backend_web/src/i18n/test",
   "main": "src/index.js",
   "dependencies": {
     "md5": "^2.3.0"
   },
   "devDependencies": {},
   "scripts": {
-    "t": "node src/index.js"
+    "t": "node src/index.js",
+    "watch": "node src/watch.js"
   },
   "author": "",
   "license": "ISC"
