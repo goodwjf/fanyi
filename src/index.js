@@ -3,7 +3,8 @@ const { getInput, output } = require('./io.js')
 const { code } = require('./config.js')
 
 const lang = {}
-const keys = Object.keys(getInput())
+const obj = getInput()
+const keys = Array.isArray(obj)? obj :  Object.keys(obj)
 //console.log(keys) 
 // keys 作为Get请求参数 总长度 14433 （2000+字段）
 // chrome get请求参数最大 8182 所以考虑分组翻译
