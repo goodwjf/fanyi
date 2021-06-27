@@ -5,7 +5,7 @@
   "bin": {
     "fy": "./bin/fanyi.js"
   },
-  "inputFile": "/Users/wangjianfeng/Desktop/ework/fanyi/lang/zh.js",
+  "inputFile": "/Users/wangjianfeng/Desktop/ework/test/zh.js",
   "main": "src/index.js",
   "dependencies": {
     "commander": "^8.0.0",
@@ -15,11 +15,11 @@
   },
   "devDependencies": {},
   "scripts": {
-    "t": "node src/index.js",
+    "t": "node src/main.js",
     "watch": "node src/watch.js"
   },
   "author": "",
   "license": "ISC",
   "i18n": "all",
-  "outputDir": "/Users/wangjianfeng/Desktop/ework/fanyi/dist"
+  "outputDir": "/Users/wangjianfeng/Desktop/ework/dist"
 }

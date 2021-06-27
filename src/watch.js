@@ -1,12 +1,16 @@
 const fs = require('fs')
 const path = require('path')
 const exec = require('child_process').exec;
-const { inputFile } = require('../package.json')
-const dir = inputFile ? path.resolve(inputFile) : path.resolve(__dirname, "../lang")
-// console.log(dir)
+
 const watch = function () {
+  // 注意等 watch的时候再去加载package.json 避免watch前被修改 
+  // 知识点 CommonJS输出是值的拷贝
+  const { inputFile } = require('../package.json')
+  const dir = inputFile ? path.resolve(inputFile) : path.resolve(__dirname, "../lang")
+  const _fileName = path.basename(inputFile)
+
   fs.watch(dir, (event, filename) => {
-    if (filename === "zh.js" && event === "change") {
+    if (filename === _fileName && event === "change") {
       // console.log(`${filename} file Changed`);
       const cmdStr = `node ${path.resolve(__dirname,'main.js')} all`
       console.log('run:' + cmdStr)
@@ -31,7 +35,7 @@ const watch = function () {
 }
 
 module.exports = { watch }
-// watch()
+//watch()
 
 // const s = `node ${path.resolve(__dirname,'index.js')} all`
 // console.log(s)
