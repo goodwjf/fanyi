@@ -1,4 +1,7 @@
-const code = process.argv.slice(2)[0]
+const packageJson = require('../package.json')
+
+const code = process.argv.slice(2)[0] || packageJson.i18n
+console.log(code)
 const config = {
   'en': 'en', // 英语
   'vie': 'vie', // 越南语

@@ -1,11 +1,11 @@
 {
   "name": "fanxiaoyi",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "基于中文词典keys，对 英语、泰语、 越南语 的翻译",
   "bin": {
     "fy": "./bin/fanyi.js"
   },
-  "inputFile": "/Users/wangjianfeng/Desktop/ework/test/zh.js",
+  "inputFile": "/Users/wangjianfeng/Desktop/ework/fanyi/lang/zh.js",
   "main": "src/index.js",
   "dependencies": {
     "commander": "^8.0.0",
@@ -20,5 +20,6 @@
   },
   "author": "",
   "license": "ISC",
-  "outputDir": "/Users/wangjianfeng/Desktop/ework/dist"
+  "i18n": "all",
+  "outputDir": "/Users/wangjianfeng/Desktop/ework/fanyi/dist"
 }
