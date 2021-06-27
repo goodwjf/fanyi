@@ -1,11 +1,16 @@
 {
-  "name": "fanyi",
-  "version": "1.0.0",
-  "description": "",
-  "inputFile": "../aagames_operation_backend_web/src/i18n/zh.js",
-  "outputDir": "../aagames_operation_backend_web/src/i18n/test",
+  "name": "fanxiaoyi",
+  "version": "1.0.3",
+  "description": "基于中文词典keys，对 英语、泰语、 越南语 的翻译",
+  "bin": {
+    "fy": "./bin/fanyi.js"
+  },
+  "inputFile": "/Users/wangjianfeng/Desktop/ework/test/zh.js",
   "main": "src/index.js",
   "dependencies": {
+    "commander": "^8.0.0",
+    "glob": "^7.1.7",
+    "inquirer": "^8.1.1",
     "md5": "^2.3.0"
   },
   "devDependencies": {},
@@ -14,5 +19,6 @@
     "watch": "node src/watch.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "outputDir": "/Users/wangjianfeng/Desktop/ework/dist"
 }

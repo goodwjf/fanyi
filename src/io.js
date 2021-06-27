@@ -3,12 +3,15 @@ const fs = require('fs')
 const { inputFile, outputDir } = require('../package.json')
 const dirName = 'dist'
 const historyFile = "._history"
+function getRP(f) {
+  return path.resolve(f) 
+}
 function getInputPath() {
-  return inputFile ? path.resolve(inputFile) : path.resolve('./lang/zh.js')
+  return inputFile ? getRP(inputFile) : getRP('./lang/zh.js')
 }
 
 function getOutputDir() {
-  return outputDir ? path.resolve(outputDir) : path.resolve(`./${dirName}/`)
+  return outputDir ? getRP(outputDir) : getRP(`./${dirName}/`)
 }
 
 function output(obj, fileName, cb) {
@@ -17,7 +20,7 @@ function output(obj, fileName, cb) {
     fs.mkdirSync(dir, 0744);
   }  
   let outFile = `${dir}/${fileName}.js`
-  console.log('path: ',`${outFile}`)
+  console.log('The output file: ',`${outFile}`)
   if (fs.existsSync(outFile)) {
     appendContent(obj, outFile, cb)
   } else {
@@ -33,6 +36,10 @@ function creatHistory() {
 }
 
 function getOldKeys() {
+  // 如果是全量替换 直接返回
+  if (process.argv.slice(3)[0] === 'a') {
+    return []
+  }
   let arr = []
   let _path = getOutputDir()
   if (_path) {
@@ -66,6 +73,7 @@ function diff(newKeys) {
 }
 
 module.exports  = {
+  getRP,
   diff,
   output,
   getInputPath,
