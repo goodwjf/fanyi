@@ -1,6 +1,6 @@
 {
   "name": "fanxiaoyi",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "基于中文词典keys，对 英语、泰语、 越南语 的翻译",
   "bin": {
     "fy": "./bin/fanyi.js"

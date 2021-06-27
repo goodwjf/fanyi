@@ -4,7 +4,10 @@ const exec = require('child_process').exec;
 
 const watch = function () {
   // 注意等 watch的时候再去加载package.json 避免watch前被修改 
-  // 知识点 CommonJS输出是值的拷贝
+  // 知识点 
+  // 1、CommonJS输出是值的拷贝, 
+  // 2、第一次加载某个模块时，Node 会缓存该模块。以后再加载该模块，就直接从缓存取出该模块的module.exports属性。
+  delete require.cache[require.resolve('../package.json')];
   const { inputFile } = require('../package.json')
   const dir = inputFile ? path.resolve(inputFile) : path.resolve(__dirname, "../lang")
   const _fileName = path.basename(inputFile)
