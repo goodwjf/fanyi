@@ -4,6 +4,10 @@ const { merge } = require('./utils.js')
 // 支持对 JSON 对象的翻译
 function tJSON(obj, fn) {
   let str = JSON.stringify(obj)
+  fy.setLang({
+    from: 'zh',
+    to: 'en'
+  })
   fy.translate(str, (res) => {
     //console.log(res) 
     let newObj = merge(JSON.parse(res[0].src), JSON.parse(res[0].dst))
