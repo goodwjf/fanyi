@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "inputFile": "../aagames_operation_backend_web/src/i18n/zh.js",
-  "outputDir": "../aagames_operation_backend_web/src/i18n/test",
+  "outputDir": "../aagames_operation_backend_web/src/i18n",
   "main": "src/index.js",
   "dependencies": {
     "md5": "^2.3.0"
