@@ -35,4 +35,8 @@ npm run watch
 ```
 
 
-参考： http://api.fanyi.baidu.com/doc/21
+参考：
+
+ http://api.fanyi.baidu.com/doc/21
+
+ https://github.com/iamtraction/google-translate
