@@ -57,7 +57,7 @@ tJSON(cn, (data) => {
 })
 
 ```
-### util.js
+### utils.js
 
 提供一些处理脏数据的方法
 
