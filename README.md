@@ -24,6 +24,9 @@ npm run watch
 如果不喜欢通过覆盖zh.js的方式进行翻译，可以选择在package.json里配置相关字段如下：
 
 ```json
+# 指定翻译引擎 [baidu | google]
+ "engine": "google",
+
 # 指定zh.js所在的相对路径
  "inputFile": "../[项目目录]/src/i18n/zh.js",
 
