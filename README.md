@@ -34,6 +34,37 @@ npm run watch
   "outputDir": "../[项目目录]/src/i18n/test",
 ```
 
+### custom.js 
+
+提供一些定制化处理方案 目前支持对JSON对象的直接翻译
+
+```javascript
+const cn = {
+  message: {
+    '现场百家乐': '现场百家乐',
+    activity: {
+        tag: {
+          all: '全部',
+          vip: 'VIP',
+        }
+    },
+    immediateRegistration: '立即注册'
+  }
+}
+
+tJSON(cn, (data) => {
+  console.log(JSON.stringify(data))
+})
+
+```
+### util.js
+
+提供一些处理脏数据的方法
+
+### translate.js
+
+用来注册于管理翻译引擎
+
 
 参考：
 

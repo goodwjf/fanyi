@@ -1,5 +1,5 @@
-const baidu = require('./translate-b.js')
-const google = require('./translate-g.js')
+const baidu = require('./translate/translate-b.js')
+const google = require('./translate/translate-g.js')
 const { engine } = require('../package.json')
 
 const engineConfig = {

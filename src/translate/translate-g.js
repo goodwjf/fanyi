@@ -18,6 +18,7 @@ function setLang(opt) {
   option = Object.assign({}, option, opt)
 }
 
+// 统一接口 使返回一样的数据结构
 function syntheticData(original, converted) {
   let keys = original
   let vals = converted
