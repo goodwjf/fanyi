@@ -17,32 +17,33 @@ function conversion (obj) {
 
 // 处理 json对象 入参翻译，返回的数据对象 中文key 也被翻译的问题
 // 直接解析出中文key 的json 对象 （支持 对象深度）
-function merge(_src, _des) {
+function merge (_src, _des) {
+
   let valArr = []
-  function getVal(des) {
-    for (const key in des) {
-      let val = des[key]
+
+  function run (obj, fn) {
+    for (const key in obj) {
+      let val = obj[key]
       if (Object.prototype.toString.call(val) === '[object Object]') {
-        getVal(val)
+        run(val, fn)
       } else {
-        valArr.push(val)
+        fn && fn(obj, key)
       }
     }
   }
-  let i = 0
-  function setVal(src) {
-    for (const key in src) {
-      let val = src[key]
-      if (Object.prototype.toString.call(val) === '[object Object]') {
-        setVal(val)
-      } else {
-        src[key] = valArr[i++]
-      }
-    }
-  }
-  getVal(_des)
-  setVal(_src)
-  // console.log(JSON.stringify(_src))
+ 
+  run(_des, (obj, key) => {
+    valArr.push(obj[key])
+  })
+  
+  //console.log(valArr)
+  
+  run(_src, (obj, key) => {
+    obj[key] = valArr.shift()
+  })
+  
+  //console.log(JSON.stringify(_src))
+
   return _src
 }
 
