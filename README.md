@@ -18,6 +18,10 @@ npm run t en
 
 # 监控词典变化自动增量翻译
 npm run watch
+
+# 运行定制化处理
+npm run play
+
 ```
 
 ### 高级用法
@@ -69,6 +73,7 @@ tJSON(cn,{from: 'zh', to: 'en'}, (data) => {
 ### utils.js
 
 提供一些处理脏数据的方法
+
 
 
 参考：
