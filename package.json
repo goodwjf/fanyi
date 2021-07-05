@@ -13,6 +13,8 @@
     "t": "node src/index.js",
     "watch": "node src/watch.js"
   },
+  "inputFile": "../aagames_operation_backend_web/src/i18n/zh.js",
+  "outputDir": "../aagames_operation_backend_web/src/i18n",
   "author": "",
   "license": "ISC"
 }
