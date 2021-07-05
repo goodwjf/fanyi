@@ -25,13 +25,13 @@ let zh = require('../lang/zh.js')
 
 
 
-tJSON(zh, {from: 'zh', to: 'en', raw: true} ,(data) => {
+tJSON(zh, {from: 'zh', to: 'en'} ,(data) => {
   console.log('ok👌')
   fs.writeFileSync(path.resolve( __dirname, '../lang/dist.json'), JSON.stringify(data), 'utf-8')
   //console.log(JSON.stringify(data))
 })
 
 // 踩坑结论：
-// Google翻译 zh -> en 针对 jsonstr 翻译会有破坏性
-// 会吧“” | '' 翻译从  ""  ,
-// 会吧1万 翻译成 -> 10,000
+// Google翻译 zh -> en 针对 Json（String) 翻译会有破坏性
+// 会吧中文 “” | '' 翻译成英文 ""  ,
+// 会吧1万 翻译成 -> 10,000 （带英文逗号）

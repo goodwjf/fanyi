@@ -27,7 +27,7 @@ npm run play
 ### 高级用法
 如果不喜欢通过覆盖zh.js的方式进行翻译，可以选择在package.json里配置相关字段如下：
 
-```json
+```JavaScript
 # 指定翻译引擎 [ baidu | google ]
  "engine": "google",
 
@@ -43,6 +43,12 @@ npm run play
 提供一些定制化处理方案 目前支持对JSON对象的直接翻译
 
 ```javascript
+
+// 踩坑结论：
+// Google翻译 zh -> en 针对 Json（String) 翻译会有破坏性
+// 会吧中文 “” | '' 翻译成英文 ""  ,
+// 会吧1万 翻译成 -> 10,000 （带英文逗号）
+
 const cn = {
   message: {
     '现场百家乐': '现场百家乐',
