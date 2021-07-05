@@ -9,6 +9,7 @@
     "md5": "^2.3.0"
   },
   "scripts": {
+    "play": "node src/play.js",
     "t": "node src/index.js",
     "watch": "node src/watch.js"
   },

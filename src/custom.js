@@ -2,12 +2,9 @@ const fy = require('./translate.js')
 const { merge } = require('./utils.js')
 
 // 支持对 JSON 对象的翻译
-function tJSON(obj, fn) {
+function tJSON(obj, opt, fn) {
   let str = JSON.stringify(obj)
-  fy.setLang({
-    from: 'zh',
-    to: 'en'
-  })
+  fy.setLang(opt)
   fy.translate(str, (res) => {
     //console.log(res) 
     let newObj = merge(JSON.parse(res[0].src), JSON.parse(res[0].dst))
@@ -15,6 +12,9 @@ function tJSON(obj, fn) {
   })
 }
 
+module.exports = {
+  tJSON
+}
 // test
 // const cn = {
 //   message: {
@@ -47,6 +47,6 @@ function tJSON(obj, fn) {
 //   }
 // }
 
-// tJSON(cn, (data) => {
+// tJSON(cn,,(data) => {
 //   console.log(JSON.stringify(data))
 // })

@@ -1,26 +1,30 @@
-module.exports = [
-  "最低金额9元",
-  "万岁",
-  "你好世界",
-  "可以吗",
-  "厉害",
-  "牛牛",
-  "哈哈",
-  "看看",
-  "试试",
-  "返水设置",
-  "会员限制",
-  "上级",
-  "请输入搜索",
-  "添加",
-  "重置",
-  "代理用户名",
-  "代充账号",
-  "帐变类型",
-  "全部",
-  "金额",
-  "时间",
-  "发放形式",
-  "操作人",
-  "查询"
-]
+module.exports =   {
+  message: {
+    '现场百家乐': '现场百家乐',
+    '保险百家乐': '保险百家乐',
+    '龙宝百家乐': '龙宝百家乐',
+    activity: {
+        nav: {
+          all: '全部',
+          vip: 'VIP红利',
+          newbie: '新手红利',
+          topic: '专题红利',
+          regular: '常规红利',
+          timeLimited: '限时红利'
+        },
+        tag: {
+          all: '全部',
+          vip: 'VIP',
+          newbie: '新手',
+          topic: '专题',
+          regular: '常规',
+          timeLimited: '限时'
+        }
+    },
+    immediateRegistration: '立即注册',
+    totalMoney: '总余额',
+    accountBalance: '账户余额',
+    selfWashingCount: '可洗码金额',
+    historyTitle: '历史记录', 
+  }
+}
