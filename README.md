@@ -52,18 +52,23 @@ const cn = {
   }
 }
 
-tJSON(cn, (data) => {
+tJSON(cn,{from: 'zh', to: 'en'}, (data) => {
   console.log(JSON.stringify(data))
 })
 
 ```
-### utils.js
 
-提供一些处理脏数据的方法
+### play.js
+
+定制化处理方案的调用入口
 
 ### translate.js
 
 用来注册与管理翻译引擎
+
+### utils.js
+
+提供一些处理脏数据的方法
 
 
 参考：

@@ -47,6 +47,6 @@ module.exports = {
 //   }
 // }
 
-// tJSON(cn,,(data) => {
+// tJSON(cn,{from: 'zh', to: 'vie'},(data) => {
 //   console.log(JSON.stringify(data))
 // })
